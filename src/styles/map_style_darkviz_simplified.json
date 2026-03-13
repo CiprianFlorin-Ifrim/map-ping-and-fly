@@ -1,0 +1,110 @@
+{
+  "version": 8,
+  "name": "Britready Cinematic DarkViz Master",
+  "sources": {
+    "protomaps": {
+      "type": "vector",
+      "url": "pmtiles://http://localhost:8000/tiles/uk_optimized.pmtiles"
+    },
+    "mask-source": {
+      "type": "geojson",
+      "data": "http://localhost:8000/tiles/uki_mask.geojson"
+    }
+  },
+  "glyphs": "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": { "background-color": "#262626" } 
+    },
+    {
+      "id": "earth",
+      "type": "fill",
+      "source": "protomaps",
+      "source-layer": "earth",
+      "paint": { "fill-color": "#121212" } 
+    },
+    {
+      "id": "lakes-and-reservoirs",
+      "type": "fill",
+      "source": "protomaps",
+      "source-layer": "water",
+      "filter": ["in", "pmap:kind", "lake", "water", "reservoir"],
+      "paint": { "fill-color": "#262626", "fill-antialias": false } 
+    },
+    {
+      "id": "waterways",
+      "type": "line",
+      "source": "protomaps",
+      "source-layer": "waterways",
+      "paint": { "line-color": "#262626", "line-width": 1 }
+    },
+    {
+      "id": "urban-areas",
+      "type": "fill",
+      "source": "protomaps",
+      "source-layer": "landuse",
+      "filter": ["in", "pmap:kind", "residential", "commercial", "industrial", "retail", "university", "hospital"],
+      "paint": { "fill-color": "#161616", "fill-antialias": false }
+    },
+    {
+      "id": "buildings",
+      "type": "fill",
+      "source": "protomaps",
+      "source-layer": "buildings",
+      "paint": { 
+        "fill-color": "#1a1a1a", 
+        "fill-outline-color": "#222222" 
+      }
+    },
+    {
+      "id": "roads-paths",
+      "type": "line",
+      "source": "protomaps",
+      "source-layer": "roads",
+      "filter": ["in", "pmap:kind", "path", "track", "pedestrian", "footway"],
+      "paint": { "line-color": "#151515", "line-width": 0.5 }
+    },
+    {
+      "id": "roads-minor",
+      "type": "line",
+      "source": "protomaps",
+      "source-layer": "roads",
+      "filter": ["in", "pmap:kind", "minor_road", "service", "residential", "unclassified"],
+      "paint": { "line-color": "#1c1c1c", "line-width": 0.8 }
+    },
+    {
+      "id": "roads-secondary",
+      "type": "line",
+      "source": "protomaps",
+      "source-layer": "roads",
+      "filter": ["in", "pmap:kind", "secondary", "tertiary"],
+      "paint": { "line-color": "#222222", "line-width": 1.2 }
+    },
+    {
+      "id": "roads-highway",
+      "type": "line",
+      "source": "protomaps",
+      "source-layer": "roads",
+      "filter": ["in", "pmap:kind", "highway", "motorway", "trunk", "primary"],
+      "paint": { "line-color": "#333333", "line-width": 2.5 }
+    },
+    {
+      "id": "boundaries",
+      "type": "line",
+      "source": "protomaps",
+      "source-layer": "boundaries",
+      "paint": { "line-color": "#444444", "line-width": 1, "line-dasharray": [2, 2] }
+    },
+    {
+      "id": "world-mask",
+      "type": "fill",
+      "source": "mask-source",
+      "paint": { 
+        "fill-color": "#262626",
+        "fill-outline-color": "#262626"
+      }
+    }
+  ]
+}
